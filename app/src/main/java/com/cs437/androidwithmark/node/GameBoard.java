@@ -1,5 +1,8 @@
 package com.cs437.androidwithmark.node;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 import java.util.ArrayList;
 
 /***
@@ -38,9 +41,11 @@ public class GameBoard {
         }
     }
 
-    private void draw(){
+    private void draw(Canvas canvas){
         //get device size, and divide evenly between nodes
         //for each node, place equal distance on screen
-
+        Paint black = new Paint();
+        black.setARGB(1, 0,0,0);
+        canvas.drawCircle(0,0,10, black);
     }
 }
