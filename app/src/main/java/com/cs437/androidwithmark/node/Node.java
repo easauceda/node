@@ -11,18 +11,18 @@ public class Node {
     Node partner;
     int cx, cy;
 
-    public Node(){
+    public Node(int x, int y){
         isActive = false;
         partner = null;
-    }
-
-    public void draw(Canvas canvas, int x, int y){
-        Paint paint = new Paint();
-        int radius = 15;
         cx = x;
         cy = y;
+    }
 
-        canvas.drawCircle(x, y, radius, paint);
+    public void draw(Canvas canvas){
+        Paint paint = new Paint();
+        int radius = 15;
+
+        canvas.drawCircle(this.cx, this.cy, radius, paint);
     }
 
     public void drawLine(Canvas canvas, int sx, int sy){
