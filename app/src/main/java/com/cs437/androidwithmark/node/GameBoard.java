@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class GameBoard {
     int gameBoard_X;
     int gameBoard_Y;
-    //ArrayList<Node> gameNodes;
+    ArrayList<Node> gameNodes = new ArrayList<>();
 
     /***
      * Constructor for the GameBoard class
@@ -33,10 +33,8 @@ public class GameBoard {
     private void initBoard() {
         for (int i = 0; i < gameBoard_Y; i++){
             for (int j = 0; j < gameBoard_X; j++){
-                //create new node
-                //add connections
-                //if i > 0, then grab node directly behind in arrayList
-                //if j > 0, then grab subtract size of gameBoard_x
+                Node test = new Node(i * 75 + 25, j * 75 + 25);
+                gameNodes.add(test);
             }
         }
     }
@@ -44,8 +42,8 @@ public class GameBoard {
     public void draw(Canvas canvas){
         //get device size, and divide evenly between nodes
         //for each node, place equal distance on screen
-
-        Node test = new Node();
-        test.draw(canvas, 100, 100);
+        for (Node toDraw : gameNodes){
+            toDraw.draw(canvas);
+        }
     }
 }

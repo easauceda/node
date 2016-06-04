@@ -13,8 +13,7 @@ public class GameBoardView extends View {
     public GameBoardView(Context context) {
         super(context);
         activity = (Activity) context;
-        gameBoard = new GameBoard(100,100);
-
+        gameBoard = new GameBoard(10,10);
     }
 
     @Override
