@@ -3,8 +3,6 @@ package com.cs437.androidwithmark.node;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.view.View;
 
 
@@ -15,13 +13,13 @@ public class GameBoardView extends View {
     public GameBoardView(Context context) {
         super(context);
         activity = (Activity) context;
-        gameBoard = new GameBoard(10,10);
+        gameBoard = new GameBoard(100,100);
+
     }
 
     @Override
     protected void onDraw(Canvas canvas){
         gameBoard.draw(canvas);
     }
-
 
 }

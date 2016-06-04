@@ -33,7 +33,6 @@ public class GameBoard {
     private void initBoard() {
         for (int i = 0; i < gameBoard_Y; i++){
             for (int j = 0; j < gameBoard_X; j++){
-                System.out.println();
                 //create new node
                 //add connections
                 //if i > 0, then grab node directly behind in arrayList
@@ -45,13 +44,8 @@ public class GameBoard {
     public void draw(Canvas canvas){
         //get device size, and divide evenly between nodes
         //for each node, place equal distance on screen
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setStyle(Paint.Style.FILL);
-        canvas.drawPaint(paint);
 
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(20);
-        canvas.drawText("Some Text", 100, 100, paint);
+        Node test = new Node();
+        test.draw(canvas, 100, 100);
     }
 }

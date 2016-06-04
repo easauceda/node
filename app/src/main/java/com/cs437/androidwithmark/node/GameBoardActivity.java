@@ -14,6 +14,8 @@ public class GameBoardActivity extends AppCompatActivity {
 
         GameBoardView test = new GameBoardView(this);
 
+        test.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+
         RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
         if (container != null) {
             container.addView(test);
