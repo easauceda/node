@@ -18,7 +18,7 @@ public class Node {
 
     public void draw(Canvas canvas, int x, int y){
         Paint paint = new Paint();
-        int radius = 5;
+        int radius = 15;
         cx = x;
         cy = y;
 
