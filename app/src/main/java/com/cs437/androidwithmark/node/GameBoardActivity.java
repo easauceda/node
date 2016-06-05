@@ -13,8 +13,10 @@ public class GameBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_board);
 
         GameBoardView test = new GameBoardView(this);
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//        params.addRule(RelativeLayout.CENTER_IN_PARENT);
+//        test.setLayoutParams(params);
 
-        test.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
 
         RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
         if (container != null) {

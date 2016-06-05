@@ -1,6 +1,7 @@
 package com.cs437.androidwithmark.node;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 /**
@@ -21,7 +22,9 @@ public class Node {
     public void draw(Canvas canvas){
         Paint paint = new Paint();
         int radius = 15;
-
+        if (isActive){
+            paint.setColor(Color.BLUE);
+        }
         canvas.drawCircle(this.cx, this.cy, radius, paint);
     }
 
