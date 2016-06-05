@@ -64,4 +64,22 @@ public class GameBoard {
             toDraw.draw(canvas);
         }
     }
+    public void findNodeAt(int x, int y){
+        //check nodes for match
+        for (Node node : gameNodes){
+            int distanceFromX = Math.abs(node.cx - x);
+            int distanceFromY = Math.abs(node.cy - y);
+            //System.out.println("X: " + distanceFromX);
+            //System.out.println("Y:" + distanceFromY);
+            if (distanceFromX < 25 && distanceFromY < 25){
+                System.out.println("Found Node");
+                if (node.isSelected && node.isActive){
+                    node.isSelected = false;
+                } else if (node.isActive){
+                    node.isSelected = true;
+                }
+                break;
+            }
+        }
+    }
 }

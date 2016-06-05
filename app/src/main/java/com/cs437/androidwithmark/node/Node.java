@@ -11,9 +11,11 @@ public class Node {
     boolean isActive;
     Node partner;
     int cx, cy;
+    public boolean isSelected;
 
     public Node(int x, int y){
         isActive = false;
+        isSelected = false;
         partner = null;
         cx = x;
         cy = y;
@@ -22,8 +24,10 @@ public class Node {
     public void draw(Canvas canvas){
         Paint paint = new Paint();
         int radius = 15;
-        if (isActive){
+        if (isSelected){
             paint.setColor(Color.BLUE);
+        } else if (isActive){
+            paint.setColor(Color.GREEN);
         }
         canvas.drawCircle(this.cx, this.cy, radius, paint);
     }
