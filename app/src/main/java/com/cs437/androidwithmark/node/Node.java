@@ -12,10 +12,12 @@ public class Node {
     Node partner;
     int cx, cy;
     public boolean isSelected;
+    public boolean isUsed;
 
     public Node(int x, int y){
         isActive = false;
         isSelected = false;
+        isUsed = false;
         partner = null;
         cx = x;
         cy = y;

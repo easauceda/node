@@ -26,13 +26,20 @@ public class Obstacle {
         int nodeX = curNode.cx;
         int nodeY = curNode.cy;
 
-        System.out.println("Node cx: " + nodeX + "\n Node cy: " + nodeY);
-
         canvas.drawCircle(nodeX, nodeY, 15, paint);
     }
 
     // Setter is to be used when the obstacle moves location
     public void setCurNode(Node curNode) {
         this.curNode = curNode;
+    }
+
+    public boolean collides(){
+        if(curNode.isUsed){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
