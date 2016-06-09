@@ -35,7 +35,7 @@ public class Obstacle {
     }
 
     public boolean collides(){
-        if(curNode.isUsed){
+        if(curNode.partner != null){
             return true;
         }
         else{
