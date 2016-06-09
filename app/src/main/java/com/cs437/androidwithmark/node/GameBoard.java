@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /***
  * Gameboard Class. The Gameboard class is designed to model and display a gameboard for node.
@@ -19,6 +20,7 @@ public class GameBoard {
     int gameBoard_width;
     int gameBoard_height;
     ArrayList<Node> gameNodes = new ArrayList<>();
+    Obstacle obstacle;
 
     /***
      * Constructor for the GameBoard class
@@ -55,6 +57,23 @@ public class GameBoard {
 
             }
         }
+
+        initObstacle();
+    }
+
+    public void initObstacle(){
+        // Create a random generator for a possible location for the obstacle to spawn on
+        Random random = new Random();
+        int obstaclePosition = random.nextInt(gameNodes.size() - 1);
+
+        // We have to make sure our random location does not hit an active node
+        // Loop until our random position is on an inactive node
+        while(gameNodes.get(obstaclePosition).isActive){
+            obstaclePosition = random.nextInt(gameNodes.size() - 1);
+        }
+
+        // Create obstacle object
+        obstacle = new Obstacle(gameNodes.get(obstaclePosition));
     }
 
     public void draw(Canvas canvas){
@@ -64,6 +83,11 @@ public class GameBoard {
             toDraw.draw(canvas);
         }
     }
+
+    public void drawObstacle(Canvas canvas){
+        obstacle.draw(canvas);
+    }
+
     public void findNodeAt(int x, int y){
         //check nodes for match
         for (Node node : gameNodes){

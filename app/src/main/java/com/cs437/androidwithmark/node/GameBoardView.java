@@ -23,12 +23,13 @@ public class GameBoardView extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
-        gameBoard = new GameBoard(10,10, width, height);
+        gameBoard = new GameBoard(20,14, width, height);
     }
 
     @Override
     protected void onDraw(Canvas canvas){
         gameBoard.draw(canvas);
+        gameBoard.drawObstacle(canvas);
     }
 
     @Override
