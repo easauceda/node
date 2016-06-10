@@ -32,22 +32,13 @@ public class Obstacle {
         canvas.drawCircle(nodeX, nodeY, 15, paint);
     }
 
-    // Setter is to be used when the obstacle moves location
-    public void setCurNode(Node curNode) {
-        this.curNode = curNode;
+    public boolean collides(){
+        System.out.println("CHECKING");
+        return curNode.isActive || curNode.isConnected;
     }
 
-    public boolean collides(){
-        if(curNode.partner != null){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
     public void move(){
         curNode = curNode.getRandomNeighbor();
-        curNode.visited = true;
         curNode.kill();
     }
 }

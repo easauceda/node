@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Node</string>
+    <string name="title_activity_game_over">GameOver</string>
+    <string name="image_desc">Game Outcome</string>
+    <string name="play_again">Play Again</string>
+    <string name="logo">Logo</string>
+    <string name="start_game">Start Game</string>
 </resources>

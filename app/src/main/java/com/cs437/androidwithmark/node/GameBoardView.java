@@ -2,6 +2,7 @@ package com.cs437.androidwithmark.node;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -20,12 +21,14 @@ public class GameBoardView extends View {
     public GameBoard gameBoard;
     private String TAG = "GameBoardView";
     private Drawable winImage;
+    private boolean winner;
+    private Paint paint;
 
     public GameBoardView(Context context) {
         super(context);
         activity = (Activity) context;
-        winImage = context.getResources().getDrawable(R.drawable.win);
         startGame();
+        paint = new Paint();
     }
 
     public void startGame() {
@@ -35,7 +38,6 @@ public class GameBoardView extends View {
 
     @Override
     protected void onDraw(Canvas canvas){
-        Paint paint = new Paint();
         paint.setColor(Color.DKGRAY);
         canvas.drawPaint(paint);
         gameBoard.draw(canvas);
@@ -49,10 +51,17 @@ public class GameBoardView extends View {
         int gameResult;
         gameBoard.selectNode(Math.round(event.getX()), Math.round(event.getY()));
         gameResult = gameBoard.checkGameStatus();
-        if (gameResult == 0) {
-            gameOver(gameBoard.gameNodes.size() - 1, false);
-        } else if (gameResult == 1){
-            gameOver(gameBoard.gameNodes.size() - 1, true);
+        if (gameResult == 1 || gameResult == 0){
+            switch (gameResult){
+                case 0:
+                    winner = false;
+                    gameOver(gameBoard.gameNodes.size() - 1);
+                    break;
+                case 1:
+                    winner = true;
+                    gameOver(gameBoard.gameNodes.size() - 1);
+                    break;
+            }
         }
         invalidate();
        return super.onTouchEvent(event);
@@ -61,9 +70,8 @@ public class GameBoardView extends View {
     /***
      * End of game animation method.
      * @param nodesLeft: How many nodes are left in the arrayList.
-     * @param winner: Boolean to determine node color during gameOver animation.
      */
-    private void gameOver(final int nodesLeft, final boolean winner){
+    private void gameOver(final int nodesLeft){
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -75,7 +83,7 @@ public class GameBoardView extends View {
                     } else {
                         targetNode.setGameLoser();
                     }
-                    gameOver(nodesLeft - 1, winner);
+                    gameOver(nodesLeft - 1);
                     invalidate();
                 } else {
                     clearBoard();
@@ -97,6 +105,11 @@ public class GameBoardView extends View {
                     gameBoard.gameNodes.remove(gameBoard.gameNodes.size() - 1);
                     invalidate();
                     clearBoard();
+                } else {
+                    Intent gameOver = new Intent(getContext(), GameOver.class);
+                    gameOver.putExtra("Winner", winner);
+                    gameOver.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    activity.startActivity(gameOver);
                 }
             }
         }, 10);

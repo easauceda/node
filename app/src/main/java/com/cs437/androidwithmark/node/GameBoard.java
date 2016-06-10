@@ -52,10 +52,10 @@ public class GameBoard {
                 }
 
                 //When i is greater than 0, neighbor can be set to node above
-//                if( i > 0){
-//                    int leftNodeIndex = gameNodes.size() - gameBoard_Y;
-//                    node.addNeighbors(gameNodes.get(leftNodeIndex));
-//                }
+                if( i > 0){
+                    int leftNodeIndex = gameNodes.size() - gameBoard_X;
+                    node.addNeighbors(gameNodes.get(leftNodeIndex));
+                }
                 if (j > 0) {
                     int aboveNodeIndex = gameNodes.size() - 1;
                     node.addNeighbors(gameNodes.get(aboveNodeIndex));
@@ -131,13 +131,11 @@ public class GameBoard {
     public int checkGameStatus() {
         //System.out.println(nodesLeft);
         if (nodesLeft == 1){
-            System.out.println("GAME OVER");
             return 1;
-        }
-        else if(nodesLeft == 0){
+        } else if(nodesLeft == 0){
             return 0;
         }
         return -1;
     }
-    
+
 }

@@ -42,16 +42,20 @@ public class Node {
         } else if (isActive){
             paint.setColor(Color.GREEN);
         }
+
         if (isConnected){
             paint.setColor(Color.WHITE);
             drawLine(canvas, partner.cx, partner.cy);
         }
+
         if (isDead){
             paint.setColor(Color.RED);
         }
+
         if (isGod){
             paint.setColor(Color.YELLOW);
         }
+
         canvas.drawCircle(this.cx, this.cy, radius, paint);
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(Color.WHITE);
@@ -63,18 +67,6 @@ public class Node {
         paint.setStrokeWidth(10);
 
         canvas.drawLine(this.cx, this.cy, sx, sy, paint);
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public Node getPartner() {
-        return partner;
     }
 
     public void setPartner(Node partner) {
@@ -97,10 +89,6 @@ public class Node {
         isGod = true;
     }
 
-    public ArrayList<Node> getNeighbors() {
-        return neighbors;
-    }
-
     public void addNeighbors(Node neighbor) {
         if (!neighbors.contains(neighbor)){
             neighbors.add(neighbor);
@@ -112,7 +100,9 @@ public class Node {
     public Node getRandomNeighbor() {
         Random rand = new Random();
         for (Node candidate : neighbors){
-            if (!candidate.visited){
+            if (candidate.isActive || candidate.isConnected){
+                return candidate;
+            } else if (!candidate.visited){
                 return candidate;
             }
         }
@@ -121,5 +111,7 @@ public class Node {
 
     public void kill() {
         isDead = true;
+ //       isActive = false;
+        visited = true;
     }
 }
