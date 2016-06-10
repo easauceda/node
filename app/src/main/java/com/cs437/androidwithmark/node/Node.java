@@ -109,6 +109,6 @@ public class Node {
 
     public Node getRandomNeighbor() {
         Random rand = new Random();
-        return neighbors.get(rand.nextInt(neighbors.size() - 1));
+        return neighbors.get(rand.nextInt(neighbors.size()));
     }
 }

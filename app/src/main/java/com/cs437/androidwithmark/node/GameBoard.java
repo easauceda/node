@@ -52,13 +52,13 @@ public class GameBoard {
                 }
 
                 //When i is greater than 0, neighbor can be set to node above
-                if( i > 0){
-                    int aboveNodeIndex = gameNodes.size() - gameBoard_X;
-                    node.addNeighbors(gameNodes.get(aboveNodeIndex));
-                }
+//                if( i > 0){
+//                    int leftNodeIndex = gameNodes.size() - gameBoard_Y;
+//                    node.addNeighbors(gameNodes.get(leftNodeIndex));
+//                }
                 if (j > 0) {
-                    int leftNodeIndex = j - 1;
-                    node.addNeighbors(gameNodes.get(leftNodeIndex));
+                    int aboveNodeIndex = gameNodes.size() - 1;
+                    node.addNeighbors(gameNodes.get(aboveNodeIndex));
                 }
                 gameNodes.add(node);
 
