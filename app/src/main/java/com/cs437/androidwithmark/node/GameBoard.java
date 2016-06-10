@@ -113,6 +113,9 @@ public class GameBoard {
                             selected = node;
                             nodesLeft--;
                             obstacle.move();
+                            if(obstacle.collides()){
+                                nodesLeft = 0;
+                            }
                         }
                     }
                 }
@@ -130,6 +133,9 @@ public class GameBoard {
         if (nodesLeft == 1){
             System.out.println("GAME OVER");
             return 1;
+        }
+        else if(nodesLeft == 0){
+            return 0;
         }
         return -1;
     }

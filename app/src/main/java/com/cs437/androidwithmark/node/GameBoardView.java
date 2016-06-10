@@ -2,22 +2,29 @@ package com.cs437.androidwithmark.node;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 
 public class GameBoardView extends View {
     private Activity activity;
     public GameBoard gameBoard;
     private String TAG = "GameBoardView";
+    private Drawable winImage;
 
     public GameBoardView(Context context) {
         super(context);
         activity = (Activity) context;
+        winImage = context.getResources().getDrawable(R.drawable.win);
         startGame();
     }
 
@@ -61,9 +68,9 @@ public class GameBoardView extends View {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (nodesLeft >= 0){
+                if (nodesLeft >= 0) {
                     Node targetNode = gameBoard.gameNodes.get(nodesLeft);
-                    if (winner){
+                    if (winner) {
                         targetNode.setGameWinner();
                     } else {
                         targetNode.setGameLoser();
@@ -86,7 +93,7 @@ public class GameBoardView extends View {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (!gameBoard.gameNodes.isEmpty()){
+                if (!gameBoard.gameNodes.isEmpty()) {
                     gameBoard.gameNodes.remove(gameBoard.gameNodes.size() - 1);
                     invalidate();
                     clearBoard();
