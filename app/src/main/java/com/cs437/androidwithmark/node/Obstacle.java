@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Created by arendon on 6/4/16.
  * This class represents our obstacle that will be moving throughout gameplay
@@ -41,5 +44,8 @@ public class Obstacle {
         else{
             return false;
         }
+    }
+    public void move(){
+        curNode = curNode.getRandomNeighbor();
     }
 }

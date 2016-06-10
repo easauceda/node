@@ -43,16 +43,24 @@ public class GameBoard {
     //TODO: Arrange nodes to be equally spaced throughout the whole screen instead of this hacky way.
     private void initBoard() {
 
-
-
         for (int i = 0; i < gameBoard_Y; i++){
             for (int j = 0; j < gameBoard_X; j++){
-                Node test = new Node(i * 100 + 50, j * 100 + 50);
+                Node node = new Node(i * 100 + 50, j * 100 + 50);
                 if (Math.random() * 10 + 1 < 2){
-                    test.isActive = true;
+                    node.isActive = true;
                     nodesLeft++;
                 }
-                gameNodes.add(test);
+
+                //When i is greater than 0, neighbor can be set to node above
+                if( i > 0){
+                    int aboveNodeIndex = gameNodes.size() - gameBoard_X;
+                    node.addNeighbors(gameNodes.get(aboveNodeIndex));
+                }
+                if (j > 0) {
+                    int leftNodeIndex = j - 1;
+                    node.addNeighbors(gameNodes.get(leftNodeIndex));
+                }
+                gameNodes.add(node);
 
             }
         }
@@ -104,6 +112,7 @@ public class GameBoard {
                             node.isSelected = true;
                             selected = node;
                             nodesLeft--;
+                            obstacle.move();
                         }
                     }
                 }

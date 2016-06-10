@@ -4,6 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 /**
  * Created by arendon on 6/4/16
  */
@@ -16,6 +19,7 @@ public class Node {
     public boolean isConnected;
     private boolean isDead;
     private boolean isGod;
+    private ArrayList<Node> neighbors = new ArrayList<>();
 
     public Node(int x, int y){
         isActive = false;
@@ -89,5 +93,22 @@ public class Node {
         isActive = false;
         isSelected = false;
         isGod = true;
+    }
+
+    public ArrayList<Node> getNeighbors() {
+        return neighbors;
+    }
+
+    public void addNeighbors(Node neighbor) {
+        if (!neighbors.contains(neighbor)){
+            neighbors.add(neighbor);
+            neighbor.addNeighbors(this);
+        }
+    }
+
+
+    public Node getRandomNeighbor() {
+        Random rand = new Random();
+        return neighbors.get(rand.nextInt(neighbors.size() - 1));
     }
 }
