@@ -47,5 +47,7 @@ public class Obstacle {
     }
     public void move(){
         curNode = curNode.getRandomNeighbor();
+        curNode.visited = true;
+        curNode.kill();
     }
 }

@@ -17,6 +17,7 @@ public class Node {
     int cx, cy;
     public boolean isSelected;
     public boolean isConnected;
+    public boolean visited;
     private boolean isDead;
     private boolean isGod;
     private ArrayList<Node> neighbors = new ArrayList<>();
@@ -27,6 +28,7 @@ public class Node {
         isConnected = false;
         isDead = false;
         isGod = false;
+        visited = false;
         partner = null;
         cx = x;
         cy = y;
@@ -109,6 +111,15 @@ public class Node {
 
     public Node getRandomNeighbor() {
         Random rand = new Random();
+        for (Node candidate : neighbors){
+            if (!candidate.visited){
+                return candidate;
+            }
+        }
         return neighbors.get(rand.nextInt(neighbors.size()));
+    }
+
+    public void kill() {
+        isDead = true;
     }
 }

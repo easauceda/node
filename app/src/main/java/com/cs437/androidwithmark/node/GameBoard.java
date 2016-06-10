@@ -139,12 +139,5 @@ public class GameBoard {
         }
         return -1;
     }
-
-    private void winnerAnimation() {
-        for (Node node : gameNodes) {
-            node.isConnected = false;
-            node.isActive = false;
-            node.isSelected = true;
-        }
-    }
+    
 }
