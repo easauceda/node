@@ -101,7 +101,8 @@ public class GameBoard {
                     } else {
                         if (selected != node){
                             selected.setPartner(node);
-                            selected = null;
+                            node.isSelected = true;
+                            selected = node;
                             nodesLeft--;
                         }
                     }
